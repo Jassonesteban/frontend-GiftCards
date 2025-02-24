@@ -1,0 +1,19 @@
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal">
+    <button (click)="closeModal()" class="modal-close">✖</button>
+
+    <h2 class="modal-title">
+      {{isLogin ? 'Iniciar Sesion' : 'Crear cuenta'}}
+    </h2>
+
+    <app-login *ngIf="isLogin"></app-login>
+    <app-register *ngIf="!isLogin"></app-register>
+
+    <p class="modal-switch">
+      {{isLogin ? '¿No tienes una cuenta?' : 'Ya tengo una cuenta'}}
+      <button (click)="toggleAuth()" class="modal-link">
+        {{isLogin ? 'Registrate' : 'Iniciar Sesion'}}
+      </button>
+    </p>
+  </div>
+</div>

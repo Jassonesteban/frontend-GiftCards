@@ -1,0 +1,10 @@
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal">
+    <button (click)="closeModal()" class="modal-close">✖</button>
+
+    <h2 class="modal-title">
+      {{isLogin ? 'Mis GiftCards' : 'Inicia sesion'}}
+    </h2>
+    <app-gift-card *ngIf="isLogin" [giftCards]="giftCardsInfo"></app-gift-card>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="flex items-center space-x-3 pb-2" style="width: 80%; margin: 0px auto">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-teal-800">
+        <path d="M9.375 3a1.875 1.875 0 0 0 0 3.75h1.875v4.5H3.375A1.875 1.875 0 0 1 1.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0 1 12 2.753a3.375 3.375 0 0 1 5.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 1 0-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3ZM11.25 12.75H3v6.75a2.25 2.25 0 0 0 2.25 2.25h6v-9ZM12.75 12.75v9h6.75a2.25 2.25 0 0 0 2.25-2.25v-6.75h-9Z" />
+      </svg>
+      <span class="text-2xl font-bold">GiftCards</span>
+      <span class="text-sm ml-1 text-gray-600">by Grupo Exito</span>
+    </div>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-900"
+          >Correo electronico</label
+        >
+        <div class="mt-2">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            autocomplete="email"
+            placeholder="usuario@domino.com"
+            formControlName="email"
+            required
+            [disabled]="isLoading"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black sm:text-sm/6"
+          />
+
+          <div
+            *ngIf="
+              loginForm.get('email')?.touched && loginForm.get('email')?.invalid
+            "
+            class="text-red-600 text-sm"
+          >
+            <div *ngIf="loginForm.get('email')?.hasError('required')">
+              El correo electrónico es obligatorio.
+            </div>
+            <div *ngIf="loginForm.get('email')?.hasError('email')">
+              El correo electrónico no es válido.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label
+            for="password"
+            class="block text-sm/6 font-medium text-gray-900"
+            >Contraseña</label
+          >
+          <div class="text-sm">
+            <a href="#" class="font-semibold text-black hover:text-indigo-500"
+              >Olvidaste la contraseña?</a
+            >
+          </div>
+        </div>
+        <div class="mt-2">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="current-password"
+            placeholder="******"
+            formControlName="password"
+            required
+            [disabled]="isLoading"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black sm:text-sm/6"
+          />
+          <div
+            *ngIf="
+              loginForm.get('password')?.touched &&
+              loginForm.get('password')?.invalid
+            "
+            class="text-red-600 text-sm"
+          >
+            <div *ngIf="loginForm.get('password')?.hasError('required')">
+              La contraseña es obligatoria.
+            </div>
+            <div *ngIf="loginForm.get('password')?.hasError('minlength')">
+              La contraseña debe tener al menos 6 caracteres.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          [disabled]="isLoading"
+          class="flex w-full justify-center rounded-md bg-black px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-in-out transform hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+        >
+          <span *ngIf="!isLoading">Ingresar</span>
+          <span *ngIf="isLoading" class="flex items-center">
+            <svg
+              class="animate-spin h-5 w-5 mr-2 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8H4z"
+              ></path>
+            </svg>
+            Cargando...
+          </span>
+        </button>
+      </div>
+      <div *ngIf="errorMessage" class="text-red-600 text-sm text-center">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</div>

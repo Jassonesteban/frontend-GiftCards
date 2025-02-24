@@ -1,0 +1,90 @@
+<div *ngIf="isLoading" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+  <div class="spinner-border animate-spin border-t-4 border-white w-16 h-16 rounded-full"></div>
+</div>
+
+<div class="p-6 bg-[#0a1f44] text-white rounded-lg shadow-md">
+  <div class="flex items-center gap-4">
+    <div class="bg-black p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+      </svg>
+
+    </div>
+    <div [formGroup]="profileForm" style="display: inline-grid;width: 50%;">
+      <label class="mb-4">Mi perfil</label>
+      <h2 *ngIf="!isEditing" class="text-xl font-bold">{{ InfoUser.username }}</h2>
+      <input *ngIf="isEditing" formControlName="username" [(ngModel)]="InfoUser.username" class="text-xl font-bold bg-white text-black" type="text"
+      style="margin-block-end: 17px;padding-inline-start: 12px;border-radius: 10px;font-size: 15px;font-weight: 400;"/>
+      <p *ngIf="!isEditing" class="text-gray-300">{{ InfoUser.email }}</p>
+      <input *ngIf="isEditing" formControlName="email" [(ngModel)]="InfoUser.email" class="text-black bg-white" type="email"
+      style="margin-block-end: 17px;padding-inline-start: 12px;border-radius: 10px;font-size: 15px;font-weight: 400;"/>
+    </div>
+
+    <div class="ml-auto flex gap-4">
+      <button *ngIf="!isEditing" (click)="deleteAccountUser(InfoUser.id)" class="px-4 py-2 text-gray-300 border border-gray-300 rounded hover:bg-red-200 hover:text-black">
+        Eliminar Cuenta
+      </button>
+      <button *ngIf="!isEditing" (click)="toggleEdit()" class="px-4 py-2 text-gray-300 border border-gray-300 rounded hover:bg-blue-200 hover:text-black">
+        Actualizar Datos
+      </button>
+      <button *ngIf="isEditing" (click)="updateAccoutUser(InfoUser.id)" class="px-4 py-2 text-gray-300 border border-gray-300 rounded hover:bg-green-200 hover:text-black">
+        Actualizar perfil
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="mt-6">
+  <div class="flex items-center gap-2 mb-4">
+    <h3 class="text-lg font-semibold text-[#0a1f44]">Mis GiftCards</h3>
+    <label class="text-sm text-gray-600">Tienes {{ giftCards.length }} GiftCards</label>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div
+      *ngFor="let card of paginatedGiftCards"
+      class="bg-white border border-black p-4 rounded-lg shadow-md relative"
+    >
+
+      <div class="flex justify-between items-center mb-2">
+        <h4 class="text-gray-900 font-semibold">{{ card.name }}</h4>
+        <span class="text-sm text-gray-900">{{
+          card.amount | currency : "COP" : "symbol" : "1.0-0"
+        }}</span>
+      </div>
+      <div class="h-8 bg-black w-full mt-2 rounded-md"></div>
+      <div class="flex justify-between items-start mt-2">
+        <div>
+          <p class="text-xs text-gray-700">
+            Vence: {{ card.expiresAt | date : "dd/MM/yyyy" }}
+          </p>
+          <p class="text-xs text-gray-700">Emitida por: {{ card.company }}</p>
+        </div>
+        <div class="flex flex-col space-y-1">
+          <button (click)="enviarEmail(card)" class="bg-blue-600 hover:bg-blue-700 text-white text-xs py-1 px-2 rounded">
+            Emitir
+          </button>
+          <button (click)="removeGiftCard(card.id)" class="bg-red-600 hover:bg-red-700 text-white text-xs py-1 px-2 rounded">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-4 space-x-2">
+    <button
+      *ngIf="currentPage > 0"
+      (click)="prevPage()"
+      class="px-6 py-3 text-lg font-semibold bg-white text-black rounded-l hover:bg-gray-200"
+    >
+      ⬅
+    </button>
+    <button
+      *ngIf="hasMorePages"
+      (click)="nextPage()"
+      class="px-6 py-3 text-lg font-semibold bg-white text-black rounded-r hover:bg-gray-200"
+    >
+      ➡
+    </button>
+  </div>
+</div>

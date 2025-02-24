@@ -1,0 +1,75 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div *ngFor="let giftCard of paginatedGiftCards"
+       class="relative bg-gradient-to-r from-[#3E4C4F] to-[#627C85] rounded-2xl shadow-lg p-5 text-white flex flex-col justify-between transform hover:scale-105 transition">
+
+    <div class="flex justify-between items-center">
+      <span class="text-xl font-semibold">{{giftCard.name}}</span>
+      <span class="text-xs bg-white text-gray-700 px-3 py-1 rounded-md font-medium">{{giftCard.company}}</span>
+    </div>
+
+    <div class="text-3xl font-bold tracking-wide">{{giftCard.amount | currency:'COP':'symbol':'1.0-0' }}</div>
+
+    <div class="flex justify-between items-center mt-2">
+      <span class="text-sm opacity-80">Válido hasta: {{giftCard.expiresAt | date:'dd/MM/yyyy'}}</span>
+      <button class="btn" (click)="onGiftCardClick(giftCard)" style="cursor: pointer;">
+        <svg *ngIf="!selectedGiftCards[giftCard.id]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+        </svg>
+
+        <svg *ngIf="selectedGiftCards[giftCard.id]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-green-500">
+          <path fill-rule="evenodd" d="M4.5 12.75l5.25 5.25L19.5 8.25l-1.5-1.5-8.25 8.25-3.75-3.75-1.5 1.5Z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <button title="pagina anterior"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="px-4 py-2 text-black rounded-lg mx-2 disabled:opacity-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-6"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+          clip-rule="evenodd"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+
+    <button title="siguiente pagina"
+      (click)="nextPage()"
+      [disabled]="currentPage * pageSize >= giftCards.length"
+      class="px-4 py-2 text-black rounded-lg mx-2 disabled:opacity-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-6"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+          clip-rule="evenodd"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
