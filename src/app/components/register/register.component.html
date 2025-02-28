@@ -2,7 +2,8 @@
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <div class="flex items-center space-x-3 pb-2" style="width: 80%; margin: 0px auto">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-teal-800">
-        <path d="M9.375 3a1.875 1.875 0 0 0 0 3.75h1.875v4.5H3.375A1.875 1.875 0 0 1 1.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0 1 12 2.753a3.375 3.375 0 0 1 5.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 1 0-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3ZM11.25 12.75H3v6.75a2.25 2.25 0 0 0 2.25 2.25h6v-9ZM12.75 12.75v9h6.75a2.25 2.25 0 0 0 2.25-2.25v-6.75h-9Z" />
+        <path
+          d="M9.375 3a1.875 1.875 0 0 0 0 3.75h1.875v4.5H3.375A1.875 1.875 0 0 1 1.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0 1 12 2.753a3.375 3.375 0 0 1 5.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 1 0-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3ZM11.25 12.75H3v6.75a2.25 2.25 0 0 0 2.25 2.25h6v-9ZM12.75 12.75v9h6.75a2.25 2.25 0 0 0 2.25-2.25v-6.75h-9Z" />
       </svg>
       <span class="text-2xl font-bold">GiftCards</span>
       <span class="text-sm ml-1 text-gray-600">by Grupo Exito</span>
@@ -13,24 +14,14 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label for="name" class="block text-sm font-medium text-gray-900"
-            >Nombre del usuario</label
-          >
-          <input
-            type="text"
-            id="username"
-            formControlName="username"
-            [disabled]="isLoading"
+          <label for="name" class="block text-sm font-medium text-gray-900">Nombre del usuario</label>
+          <input type="text" id="username" formControlName="username" [disabled]="isLoading"
             class="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-black"
-            placeholder="Nombre(s)"
-          />
-          <div
-            *ngIf="
+            placeholder="Nombre(s)" />
+          <div *ngIf="
               registerForm.get('username')?.touched &&
               registerForm.get('username')?.invalid
-            "
-            class="text-red-600 text-sm"
-          >
+            " class="text-red-600 text-sm">
             <div *ngIf="registerForm.get('username')?.hasError('required')">
               El nombre es obligatorio.
             </div>
@@ -41,24 +32,14 @@
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-900"
-            >Correo electrónico</label
-          >
-          <input
-            type="email"
-            id="email"
-            formControlName="email"
-            [disabled]="isLoading"
+          <label for="email" class="block text-sm font-medium text-gray-900">Correo electrónico</label>
+          <input type="email" id="email" formControlName="email" [disabled]="isLoading"
             class="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-black"
-            placeholder="usuario@dominio.com"
-          />
-          <div
-            *ngIf="
+            placeholder="usuario@dominio.com" />
+          <div *ngIf="
               registerForm.get('email')?.touched &&
               registerForm.get('email')?.invalid
-            "
-            class="text-red-600 text-sm"
-          >
+            " class="text-red-600 text-sm">
             <div *ngIf="registerForm.get('email')?.hasError('required')">
               El correo electrónico es obligatorio.
             </div>
@@ -69,24 +50,14 @@
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-900"
-            >Contraseña</label
-          >
-          <input
-            type="password"
-            id="password"
-            formControlName="password"
-            [disabled]="isLoading"
+          <label for="password" class="block text-sm font-medium text-gray-900">Contraseña</label>
+          <input type="password" id="password" formControlName="password" [disabled]="isLoading"
             class="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-black"
-            placeholder="******"
-          />
-          <div
-            *ngIf="
+            placeholder="******" />
+          <div *ngIf="
               registerForm.get('password')?.touched &&
               registerForm.get('password')?.invalid
-            "
-            class="text-red-600 text-sm"
-          >
+            " class="text-red-600 text-sm">
             <div *ngIf="registerForm.get('password')?.hasError('required')">
               La contraseña es obligatoria.
             </div>
@@ -97,70 +68,36 @@
         </div>
 
         <div>
-          <label
-            for="confirmPassword"
-            class="block text-sm font-medium text-gray-900"
-            >Confirmar Contraseña</label
-          >
-          <input
-            type="password"
-            id="confirmPassword"
-            formControlName="confirmPassword"
-            [disabled]="isLoading"
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-900">Confirmar Contraseña</label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" [disabled]="isLoading"
             class="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-black"
-            placeholder="******"
-          />
-          <div
-            *ngIf="
+            placeholder="******" />
+          <div *ngIf="
               registerForm.get('confirmPassword')?.touched &&
               registerForm.get('confirmPassword')?.invalid
-            "
-            class="text-red-600 text-sm"
-          >
-            <div
-              *ngIf="registerForm.get('confirmPassword')?.hasError('required')"
-            >
+            " class="text-red-600 text-sm">
+            <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
               Debes confirmar la contraseña.
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 registerForm
                   .get('confirmPassword')
                   ?.hasError('passwordMismatch')
-              "
-            >
+              ">
               Las contraseñas no coinciden.
             </div>
           </div>
         </div>
 
         <div class="col-span-2 mt-4">
-          <button
-            type="submit"
-            [disabled]="isLoading"
-            class="flex w-full justify-center rounded-md bg-black px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-in-out transform hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-          >
+          <button type="submit" [disabled]="isLoading"
+            class="flex w-full justify-center rounded-md bg-black px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-in-out transform hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-600">
             <span *ngIf="!isLoading">Crear cuenta</span>
             <span *ngIf="isLoading" class="flex items-center">
-              <svg
-                class="animate-spin h-5 w-5 mr-2 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  class="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v8H4z"
-                ></path>
+              <svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
               </svg>
               Cargando...
             </span>

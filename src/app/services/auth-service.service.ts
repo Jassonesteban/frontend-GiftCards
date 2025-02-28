@@ -58,7 +58,7 @@ export class AuthServiceService {
   setGiftCardsUser(idsCards:any, idUser:any){
     this.loadingSubject.next(true);
     const formattedIds = idsCards.map(String);
-    return this.http.put(`${this.apiURL}/${idUser}/add-cards`, formattedIds, {withCredentials:true});
+    return this.http.put(`${this.apiURL}/${idUser}/add-cards`, formattedIds, {withCredentials:true, observe:'response'});
   }
 
   getInfoUser(idUser:any):Observable<user>{
@@ -107,6 +107,11 @@ export class AuthServiceService {
   getIdUser():string | null {
     const userData = this.getUserData();
     return userData ? userData.id : null;
+  }
+
+  getRolUser():string | null {
+    const userData = this.getUserData();
+    return userData ? userData.rolId : null;
   }
 
   resetSelectedGiftCards() {

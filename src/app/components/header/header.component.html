@@ -29,6 +29,14 @@
       <span>Mis tarjetas</span>
     </button>
 
+    <button *ngIf="rolUser == 1" (click)="openPanelCreatedGiftCards()" class="flex items-center space-x-2 text-gray-700 hover:text-teal-800 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+
+      <span>Crear tarjeta</span>
+    </button>
+
     <button class="flex items-center space-x-2 px-4 py-2 border border-red-700 text-red-700 rounded-lg bg-white hover:bg-red-50 transition" (click)="logout()">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25a.75.75 0 00-.75-.75H5.25a.75.75 0 00-.75.75v13.5a.75.75 0 00.75.75h9.75a.75.75 0 00.75-.75V15m4.5-3h-9m9 0l-3-3m3 3l-3 3" />

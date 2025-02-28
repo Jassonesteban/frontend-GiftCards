@@ -51,6 +51,7 @@ export class LoginComponent {
       this.authModalService.closeModal();
       this.authService.loginUser(email ?? "", password??"").add( () => {
         this.isLoading = false;
+        window.location.reload();
       });
     } else {
       Object.keys(this.loginForm.controls).forEach(field => {

@@ -11,7 +11,7 @@
 
     </div>
     <div [formGroup]="profileForm" style="display: inline-grid;width: 50%;">
-      <label class="mb-4">Mi perfil</label>
+      <label class="mb-1">Mi perfil</label>
       <h2 *ngIf="!isEditing" class="text-xl font-bold">{{ InfoUser.username }}</h2>
       <input *ngIf="isEditing" formControlName="username" [(ngModel)]="InfoUser.username" class="text-xl font-bold bg-white text-black" type="text"
       style="margin-block-end: 17px;padding-inline-start: 12px;border-radius: 10px;font-size: 15px;font-weight: 400;"/>
@@ -51,7 +51,7 @@
           card.amount | currency : "COP" : "symbol" : "1.0-0"
         }}</span>
       </div>
-      <div class="h-8 bg-black w-full mt-2 rounded-md"></div>
+      <div class="h-8 bg-black w-full mt-2 rounded-md mb-4"></div>
       <div class="flex justify-between items-start mt-2">
         <div>
           <p class="text-xs text-gray-700">

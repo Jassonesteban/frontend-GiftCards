@@ -37,23 +37,26 @@ export class MyGiftcardsComponent {
   getInfoUser() {
     let idUser = this.authService.getIdUser();
 
-    this.authService.getInfoUser(idUser).subscribe((user: user) => {
-      if (user.cardIds && user.cardIds.length > 0) {
-        let requests = user.cardIds.map((id) =>
-          this.giftCardService.getInfoGiftCardById(id)
-        );
+    if (idUser !== null) {
+      this.authService.getInfoUser(idUser).subscribe((user: user) => {
+        if (user.cardIds && user.cardIds.length > 0) {
+          let requests = user.cardIds.map((id) =>
+            this.giftCardService.getInfoGiftCardById(id)
+          );
 
-        forkJoin(requests).subscribe(
-          (cards) => {
-            this.giftCardsInfo = cards;
-            console.log('Array completo de GiftCards:', this.giftCardsInfo);
-          },
-          (error) => {
-            console.log('Hubo un error obteniendo los detalles ', error);
-          }
-        );
-      }
-    });
+          forkJoin(requests).subscribe(
+            (cards) => {
+              this.giftCardsInfo = cards;
+            },
+            (error) => {
+              console.log('Hubo un error obteniendo los detalles ', error);
+            }
+          );
+        }
+      });
+    } else {
+      return;
+    }
   }
 
   getInfoGiftCard(idGiftCard: string) {
